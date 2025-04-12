@@ -9,7 +9,11 @@ use App\Http\Controllers\Admin\Auth\PasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\CourseCategoryController;
+use App\Http\Controllers\Admin\CourseLanguageController;
+use App\Http\Controllers\Admin\CourseLevelController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\InstructorRequestController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(["middleware" => "guest:admin", "prefix" => "admin", "as" => "admin."], function () {
@@ -56,4 +60,12 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     Route::get('dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
+
+    Route::get('instructor-doc-download/{user}', [InstructorRequestController::class, 'download'])
+        ->name('instructor-doc-download');
+    Route::resource('instructor-requests', InstructorRequestController::class);
+
+    Route::resource('course-language', CourseLanguageController::class);
+    Route::resource('course-level', CourseLevelController::class);
+    Route::resource('course-category', CourseCategoryController::class);
 });

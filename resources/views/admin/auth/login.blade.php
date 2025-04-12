@@ -21,6 +21,11 @@
         body {
             font-feature-settings: "cv03", "cv04", "cv11";
         }
+
+        input[type=password]::-ms-reveal,
+        input[type=password]::-ms-clear {
+            display: none;
+        }
     </style>
     @vite(['resources/js/admin/login.js'])
 </head>
@@ -35,7 +40,7 @@
                         class="navbar-brand-image">
                 </a>
             </div>
-            
+
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -61,8 +66,8 @@
                                 </span>
                             </label>
                             <div class="input-group input-group-flat">
-                                <input type="password" name="password" class="form-control password" placeholder="Your password"
-                                    autocomplete="off" required>
+                                <input type="password" name="password" class="form-control password"
+                                    placeholder="Your password" autocomplete="off" required>
                                 <span class="input-group-text toggle-password">
                                     <a href="javascript:;" class="link-secondary" title="Show password"
                                         data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->

@@ -15657,3 +15657,10 @@ footer {
     -ms-border-radius: 0px !important;
     -o-border-radius: 0px !important;
 }
+
+select {
+    padding-top: 11px !important;
+    padding-bottom: 11px !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}

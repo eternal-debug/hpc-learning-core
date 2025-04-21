@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\CourseController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\InstructorDashboardController;
 use App\Http\Controllers\Frontend\ProfileController;
@@ -30,6 +31,10 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:instructor'],
     Route::post('profile/update', [ProfileController::class, 'profileUpdate'])->name('profile.update');
     Route::post('profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
     Route::post('profile/update-social', [ProfileController::class, 'updateSocial'])->name('profile.update-social');
+
+    Route::get('course', [CourseController::class, 'index'])->name('course.index');
+    Route::get('course/create', [CourseController::class, 'create'])->name('course.create');
+    Route::post('course/create', [CourseController::class, 'storeBasicInfo'])->name('course.store-basic-info');
 });
 
 Route::get('/admin/dashboard', function () {

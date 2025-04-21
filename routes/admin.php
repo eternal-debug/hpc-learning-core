@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\CourseCategoryController;
 use App\Http\Controllers\Admin\CourseLanguageController;
 use App\Http\Controllers\Admin\CourseLevelController;
+use App\Http\Controllers\Admin\CourseSubCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InstructorRequestController;
 use Illuminate\Support\Facades\Route;
@@ -68,4 +69,10 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     Route::resource('course-language', CourseLanguageController::class);
     Route::resource('course-level', CourseLevelController::class);
     Route::resource('course-category', CourseCategoryController::class);
+    Route::get('{course_category}/sub-category', [CourseSubCategoryController::class, 'index'])->name('course-sub-category.index');
+    Route::get('{course_category}/sub-category/create', [CourseSubCategoryController::class, 'create'])->name('course-sub-category.create');
+    Route::post('{course_category}/sub-category', [CourseSubCategoryController::class, 'store'])->name('course-sub-category.store');
+    Route::get('{course_category}/sub-category/{course_sub_category}/edit', [CourseSubCategoryController::class, 'edit'])->name('course-sub-category.edit');
+    Route::put('{course_category}/sub-category/{course_sub_category}', [CourseSubCategoryController::class, 'update'])->name('course-sub-category.update');
+    Route::delete('{course_category}/sub-category/{course_sub_category}', [CourseSubCategoryController::class, 'destroy'])->name('course-sub-category.destroy');
 });

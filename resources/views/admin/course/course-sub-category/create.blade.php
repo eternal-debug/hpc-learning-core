@@ -5,15 +5,15 @@
         <div class="container-xl">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Create Category</h3>
+                    <h3 class="card-title">Create Sub Category</h3>
                     <div class="card-actions">
-                        <a href="{{ route('admin.course-category.index') }}" class="btn btn-danger">
+                        <a href="{{ route('admin.course-sub-category.index', $course_category->id) }}" class="btn btn-danger">
                             <i class="ti ti-arrow-left"></i>Back
                         </a>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.course-category.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.course-sub-category.store', $course_category->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">

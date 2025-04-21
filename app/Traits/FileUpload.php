@@ -11,11 +11,16 @@ trait FileUpload
 
     public function uploadFile(UploadedFile $file, string $directory = 'uploads') : string
     {
-        $filename = 'hpceducore_'.uniqid().'.'.$file->getClientOriginalExtension();
-
-        $file->move(public_path($directory), $filename);
-
-        return '/'.$directory.'/'.$filename;
+        try {
+            $filename = 'hpceducore_'.uniqid().'.'.$file->getClientOriginalExtension();
+    
+            $file->storeAs($directory, $filename, 'public');
+    
+            return '/'.$directory.'/'.$filename;
+        } catch (\Exception $e) {
+            throw $e;
+        }
+        
     }
 
     public function deleteFile(string $path) : bool

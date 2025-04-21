@@ -5,9 +5,14 @@
         <div class="container-xl">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Course Categories</h3>
+                    <h3 class="card-title"><b>{{ $course_category->name }}</b>'s Sub Categories</h3>
                     <div class="card-actions">
-                        <a href="{{ route('admin.course-category.create') }}" class="btn btn-primary">
+                        <a href="{{ route('admin.course-category.index') }}"
+                            class="btn btn-danger">
+                            <i class="ti ti-arrow-left"></i>Back
+                        </a>
+                        <a href="{{ route('admin.course-sub-category.create', $course_category->id) }}"
+                            class="btn btn-primary">
                             <i class="ti ti-plus"></i>Add new
                         </a>
                     </div>
@@ -25,34 +30,30 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($categories as $category)
+                                @forelse ($subCategories as $subCategory)
                                     <tr>
-                                        <td><i class="{{ $category->icon }}"></i></td>
-                                        <td> {{ $category->name }} </td>
-                                        <td> 
-                                            @if ($category->show_at_trending)
+                                        <td><i class="{{ $subCategory->icon }}"></i></td>
+                                        <td> {{ $subCategory->name }} </td>
+                                        <td>
+                                            @if ($subCategory->show_at_trending)
                                                 <span class="badge bg-green text-green-fg">Yes</span>
                                             @else
                                                 <span class="badge bg-danger text-danger-fg">No</span>
                                             @endif
                                         </td>
-                                        <td> 
-                                            @if ($category->status)
+                                        <td>
+                                            @if ($subCategory->status)
                                                 <span class="badge bg-green text-green-fg">Active</span>
                                             @else
                                                 <span class="badge bg-danger text-danger-fg">Inactive</span>
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.course-sub-category.index', $category->id) }}"
-                                                class="text-warning" style="text-decoration: none">
-                                                <i class="ti ti-list"></i>
-                                            </a>
-                                            <a href="{{ route('admin.course-category.edit', $category->id) }}"
+                                            <a href="{{ route('admin.course-sub-category.edit', ['course_category' => $course_category->id, 'course_sub_category' => $subCategory->id]) }}"
                                                 class="text-primary" style="text-decoration: none">
                                                 <i class="ti ti-edit"></i>
                                             </a>
-                                            <a href="{{ route('admin.course-category.destroy', $category->id) }}"
+                                            <a href="{{ route('admin.course-sub-category.destroy', ['course_category' => $course_category->id, 'course_sub_category' => $subCategory->id]) }}"
                                                 class="text-danger delete-item" style="text-decoration: none">
                                                 <i class="ti ti-trash-x"></i>
                                             </a>
@@ -65,9 +66,6 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-center mt-3">
-                            {{-- {{ $categories->links() }} --}}
-                        </div>
                     </div>
                 </div>
             </div>

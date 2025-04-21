@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}">
     @vite(['resources/css/frontend.css'])
+    @stack('header_scripts')
 </head>
 
 <body class="home_3">

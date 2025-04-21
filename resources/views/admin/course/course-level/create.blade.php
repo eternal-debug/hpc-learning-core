@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Create Level</h3>
                     <div class="card-actions">
-                        <a href="{{ route('admin.course-level.index') }}" class="btn btn-primary">
+                        <a href="{{ route('admin.course-level.index') }}" class="btn btn-danger">
                             <i class="ti ti-arrow-left"></i>Back
                         </a>
                     </div>
